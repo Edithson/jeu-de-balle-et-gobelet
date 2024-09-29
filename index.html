@@ -1,0 +1,265 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un Jeu De Hazard</title>
+    <style>
+        h1{
+            width: 275px;
+            height: 5px;
+            margin: 0 auto;
+        }
+        #win, #lose{
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background-color: rgb(96, 194, 30);
+            margin: 0 auto;
+            text-align: center;
+            font-size: 50px;
+            color: white;
+            top: -100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+        }
+        #lose{
+            background-color: rgb(219, 27, 27);
+        }
+        #p1, #p2{
+            margin-top: 10px;
+        }
+        #rejouer{
+            display: inline-block;
+            border-radius: 10px;
+            width: 100px;
+            height: 20px;
+            background-color: white;
+            font-size: small;
+            text-decoration: none;
+            color: black;
+            margin: 0 auto;
+            box-shadow: 1px 2px 2px 2px black;
+        }
+        #rejouer:active{
+            box-shadow: 0px 1px 1px 1px black;
+        }
+        section{
+            padding-top: 150px;
+            width: 430px;
+            height: 250px;
+            background-color: aquamarine;
+            margin: 50 auto;
+        }
+
+        .gobelet1{
+            margin-left: 50px;
+        }
+        .balle1{
+            margin-left: 60px;
+        }
+        .gobelet2{
+            margin-left: 170px;
+        }
+        .balle2{
+            margin-left: 180px;
+        }
+        .gobelet3{
+            margin-left: 290px;
+        }
+        .balle3{
+            margin-left: 300px;
+        }
+
+        .balle1, .balle2, .balle3{
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            position: absolute;
+            margin-top: 20px;
+            z-index: 1;
+            background-color: red;
+        }
+        .gobelet1, .gobelet2, .gobelet3{
+            position: absolute;
+            width: 70px;
+            height: 90px;
+            z-index: 2;
+            background-color: rgb(12, 44, 71);
+        }
+
+        #action2{
+            position: absolute;
+            width: 150px;
+            height: 30px;
+            background-color: blueviolet;
+            border-radius: 10px;
+            box-shadow: 1px 2px 2px 2px black;
+            text-align: center;
+            top: 83%;
+            left: 50%;
+            transform: translate(-50%, -50%);        
+        }
+        #action2:hover{
+            cursor: grab;
+        }
+        #action2:active{
+            box-shadow: 1px 2px 1px 1px black;
+            background-color: rgb(148, 64, 228);
+        }
+        #p3{
+            color: black;
+            position: absolute;
+            top: 77%;
+            left: 50%;
+            transform: translate(-50%, -50%);   
+        }
+        #p4{
+            color: white;
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translate(-50%, -50%);   
+        }
+        #p3, #p4{z-index: 5;}
+        body{
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>voici un jeu de balle</h1> 
+    <section>
+        <div id="gobelet1" class="gobelet1"></div><div id="balle1" class="balle1"></div>
+        <div id="gobelet2" class="gobelet2"></div><div id="balle2" class="balle2"></div>
+        <div id="gobelet3" class="gobelet3"></div><div id="balle3" class="balle3"></div>
+    </section>
+    <div id="action2"><b>commencer la partie</b></div>
+
+    <section id="win">
+        <b>
+            <p id="P1">Quel Succès</p>
+            <p id="P2">Vous Avez GAGNE</p>
+            <a id="rejouer" href="index.html">Nouvelle Partie</a>
+        </b>
+    </section>
+    <section id="lose">
+        <b>
+            <p id="P1">Erreur Fatale</p>
+            <p id="P2">Vous Avez PERDU</p>
+            <a id="rejouer" href="index.html">Nouvelle Partie</a>
+        </b>
+    </section>
+    <a id="p3" href="#" onclick="aide()"><b>comment jouer ?</b></a>
+    <p id="p4"><b>Jeu développer par : MOAFO Gaus. Tel. : 678 859 210</b></p>
+    <script>
+                
+        function aide() {
+            alert("Mettez vos yeux, votre capacité de concentration et votre chance à l’épreuve dans ce jeu, en essayant de retrouver la balle rouge, qui est cachée derrière l’une des boites bleu. Dès que vous serez prêt, cliquer sur commencer la partie\n\nJeu développer par : MOAFO Gaus. --- Tel. : 678 859 210")
+        }
+        function finalWin() {
+            document.getElementById("win").style.top="50%"
+            document.getElementById("win").style.transition="1s"
+        }
+        function finalLose() {
+            document.getElementById("lose").style.top="50%"
+            document.getElementById("lose").style.transition="1s"
+        }
+        function balle(c) {
+            document.getElementById("balle1").style.backgroundColor=""+c;
+            document.getElementById("balle2").style.backgroundColor=""+c;
+            document.getElementById("balle3").style.backgroundColor=""+c;
+        }
+        a=Math.floor(Math.random()*(3-1+1))+1;
+        function mouvUp() {
+            gobelet = document.getElementById("gobelet"+a);
+            gobelet.style.transitionDuration="1s";
+            gobelet.style.marginTop="0px";
+        };
+
+        a=Math.floor(Math.random()*(3-1+1))+1;
+
+        function action1() {
+            couleur = "red"
+            balle(couleur);
+            document.getElementById("gobelet"+a).style.transitionDuration="1s";
+            document.getElementById("gobelet"+a).style.marginTop="-100px";
+            setTimeout(() => {
+                mouvUp();
+            }, 3000);
+        }
+        
+        function mixage (){
+            x=Math.floor(Math.random()*(350-10+1))+10;
+            y=Math.floor(Math.random()*(150+150+1))-150;
+            //masque de balle
+            couleur = "aquamarine"
+            balle(couleur);
+            //algorithme d'animation
+            gobelet.style.transition="0.1s"
+            gobelet.style.marginLeft=(x+"px")
+            gobelet.style.marginTop=(y+"px")
+            gobelet.style.transition="0.1s"
+        }
+        function classementInitial() {
+            document.getElementById("gobelet1").style.marginTop="0px";
+            document.getElementById("gobelet1").style.marginLeft="50px";
+            document.getElementById("gobelet1").style.transition="1s";
+            document.getElementById("gobelet2").style.marginTop="0px";
+            document.getElementById("gobelet2").style.marginLeft="170px";
+            document.getElementById("gobelet2").style.transition="1s";
+            document.getElementById("gobelet3").style.marginTop="0px";
+            document.getElementById("gobelet3").style.marginLeft="290px";
+            document.getElementById("gobelet3").style.transition="1s";
+        }
+        resultat = Math.floor(Math.random()*(3-1+1))+1;
+        choix = 0;
+
+        function deliberation(resultat, choix) {
+            if (choix == resultat) {
+                setTimeout(() => {
+                    finalWin();
+            }, 500);
+            }else{
+                document.getElementById("balle"+choix).style.backgroundColor="aquamarine";
+                setTimeout(() => {
+                    finalLose();
+            }, 500);
+            }
+        }
+
+        gobelet = document.getElementById("action2").addEventListener('click', function () {
+            action1()
+            setTimeout(() => {
+            interval = setInterval(() => {
+                mixage(gobelet=document.getElementById("gobelet1")),
+                mixage(gobelet=document.getElementById("gobelet2")),
+                mixage(gobelet=document.getElementById("gobelet3"))
+
+            }, 100);
+            setTimeout(() => {
+                clearInterval(interval);
+                classementInitial();
+                setTimeout(() => {
+                    couleur = "red"
+                    balle(couleur);
+                }, 1000);
+                resultat = Math.floor(Math.random()*(3-1+1))+1;
+                choix = 0;
+
+            document.getElementById("gobelet1").addEventListener('click', function () { choix = 1;
+                document.getElementById("gobelet1").style.marginTop="-100px"; deliberation(resultat, choix);});
+
+            document.getElementById("gobelet2").addEventListener('click', function () { choix = 2;
+                document.getElementById("gobelet2").style.marginTop="-100px";deliberation(resultat, choix);});
+    
+            document.getElementById("gobelet3").addEventListener('click', function () { choix = 3;
+                document.getElementById("gobelet3").style.marginTop="-100px";deliberation(resultat, choix);});
+            }, 3000);
+        }, 4000);
+        });
+
+    </script>
+</body>
+</html>

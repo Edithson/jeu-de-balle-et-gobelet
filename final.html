@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #win, #lose{
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background-color: rgb(96, 194, 30);
+            margin: 0 auto;
+            text-align: center;
+            font-size: 50px;
+            color: white;
+            top: -50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #lose{
+            background-color: rgb(219, 27, 27);
+        }
+        #p1, #p2{
+            margin-top: 100px;
+        }
+        input{
+            width: 100px;
+            height: 50px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body id="body">
+    <section id="win">
+        <b>
+            <p id="P1">Quel Sucess</p>
+            <p id="P2">Vous Avez GAGNE</p>
+            <input type="button" value="ok">
+        </b>
+    </section>
+    <section id="lose">
+        <b>
+            <p id="P1">Erreur Fatale</p>
+            <p id="P2">Vous Avez PERDU</p>
+            <input type="button" value="ok">
+        </b>
+    </section>
+    <script>
+        function finalWin() {
+            document.getElementById("win").style.top="50%"
+            document.getElementById("win").style.transition="1s"
+        }
+        function finalLose() {
+            document.getElementById("lose").style.top="50%"
+            document.getElementById("lose").style.transition="1s"
+        }
+        document.getElementById("body").addEventListener('click', function () {
+            finalLose();
+        })
+    </script>
+</body>
+</html>
